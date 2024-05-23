@@ -1,9 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from .routes import main_bp
-from .models import db, User  # Import db from models
-from .auth import auth_bp  # Ensure this import is correct if you have an 'auth' blueprint
+from .models import db, User 
+from .auth import auth_bp  
 import os
 import secrets
 
@@ -21,7 +20,7 @@ def create_app():
     login_manager.login_message_category = 'info'
     
     app.register_blueprint(main_bp)
-    app.register_blueprint(auth_bp, url_prefix='/auth')  # Register with a prefix if needed
+    app.register_blueprint(auth_bp, url_prefix='/auth') 
     
     @login_manager.user_loader
     def load_user(user_id):
