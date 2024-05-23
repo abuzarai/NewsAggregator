@@ -16,14 +16,14 @@ def fetch_news_articles(api_key_newsapi, api_key_newsdata, category, page_size=4
                 'title': article.get('title', ''),
                 'description': article.get('description', ''),
                 'url': article.get('url', ''),
-                'image': article.get('urlToImage', '')  # Assuming 'urlToImage' holds the image URL
+                'image': article.get('urlToImage', '')  
             }
         elif source == 'newsdata':
             return {
                 'title': article.get('title', ''),
-                'description': article.get('content', ''),  # Assuming 'content' holds the description
-                'url': article.get('link', ''),  # Assuming 'link' holds the URL
-                'image': article.get('image_url', '')  # Assuming 'image_url' holds the image URL
+                'description': article.get('content', ''),  
+                'url': article.get('link', ''),  
+                'image': article.get('image_url', '')  
             }
 
     # Fetch from News API
@@ -32,7 +32,6 @@ def fetch_news_articles(api_key_newsapi, api_key_newsdata, category, page_size=4
     if response_newsapi.status_code == 200:
         try:
             data_newsapi = response_newsapi.json()
-            print("News API Response:", data_newsapi)  # Debug print
         except ValueError:
             print("Failed to parse JSON from News API")
             data_newsapi = {}
@@ -52,7 +51,6 @@ def fetch_news_articles(api_key_newsapi, api_key_newsdata, category, page_size=4
     if response_newsdata.status_code == 200:
         try:
             data_newsdata = response_newsdata.json()
-            print("Newsdata.io Response:", data_newsdata)  # Debug print
         except ValueError:
             print("Failed to parse JSON from Newsdata.io")
             data_newsdata = {}
