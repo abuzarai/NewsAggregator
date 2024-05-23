@@ -3,9 +3,10 @@ from flask_login import login_user, login_required, logout_user
 from .models import User, db
 from .forms import RegistrationForm, LoginForm
 from .news_utils import fetch_news_articles, preprocess_text, detect_duplicates, get_default_news
+import os       
 
-News_API_KEY = "d8f46f24488d469f82ef0f1987fb91e1"
-Newsdata_API_KEY = "pub_440061d1f1fe64f7148fd8824c34326aaf6d6"
+News_API_KEY = os.getenv("News_API_KEY")
+Newsdata_API_KEY = os.getenv("Newsdata_API_KEY")
 
 main_bp = Blueprint("main", __name__)
 

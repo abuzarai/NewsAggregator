@@ -5,10 +5,13 @@ from .routes import main_bp
 from .models import db, User  # Import db from models
 from .auth import auth_bp  # Ensure this import is correct if you have an 'auth' blueprint
 import os
+import secrets
+
+secret_key = secrets.token_hex(16)
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  
+    app.config['SECRET_KEY'] = secret_key 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     
     db.init_app(app)
